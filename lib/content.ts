@@ -13,9 +13,9 @@ export const profile = {
   email: "rajatnalawade.work@gmail.com",
   emailIsPlaceholder: true,
   socials: [
-    { label: "LinkedIn", href: "" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/rajat-nalawade-805b83303?utm_source=share_via&utm_content=profile&utm_medium=member_ios" },
     { label: "Behance", href: "" },
-    { label: "Instagram", href: "" },
+    { label: "Instagram", href: "https://www.instagram.com/rajat_ae?exln=ZGpuMHUxcGw5eW1p" },
   ] as { label: string; href: string }[],
   languages: ["English", "Hindi", "Marathi"],
 };
