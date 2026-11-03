@@ -25,7 +25,7 @@ export default function Exhibition() {
         </div>
         {images.map((p, i) => (
           <figure key={p.id} className={`shrink-0 ${i % 2 ? "md:mt-24" : "md:-mt-24"}`}>
-            <div className={`relative overflow-hidden ${p.ratio === "portrait" ? "h-[60vh] w-[48vw] md:h-[62vh] md:w-[28vw]" : "h-[56vw] w-[72vw] md:h-[46vh] md:w-[46vh]"}`}>
+            <div className={`relative overflow-hidden ${p.ratio === "portrait" ? "h-[60vh] w-[48vw] md:h-[62vh] md:w-[28vw]" : p.ratio === "landscape" ? "h-[44vw] w-[78vw] md:h-[42vh] md:w-[68vh]" : "h-[56vw] w-[72vw] md:h-[46vh] md:w-[46vh]"}`}>
               <Image src={p.src} alt={p.title} fill sizes="(max-width:768px) 72vw, 40vh" className="object-cover" />
             </div>
             <figcaption className="mt-3 flex justify-between font-mono text-[10px] uppercase tracking-widest text-bone/60"><span>Fig. {String(i + 1).padStart(2, "0")}</span><span>{p.title}</span></figcaption>
@@ -35,3 +35,4 @@ export default function Exhibition() {
     </section>
   );
 }
+

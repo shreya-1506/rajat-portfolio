@@ -51,7 +51,7 @@ export const tools = [
   { name: "Animate", level: 5 },
 ];
 
-export type Category = "Social Design" | "Reels" | "CGI" | "Films";
+export type Category = "Social Design" | "Reels" | "CGI" | "Films" | "Wedding";
 export type Project = {
   id: string; title: string; category: Category; blurb: string;
   type: "image" | "video"; src: string; poster?: string;
@@ -65,7 +65,16 @@ const vid = (folder: "videos" | "cgi", id: string, file: string, title: string, 
   id, title, category, blurb, type: "video", src: `/media/v/${id}.mp4`, poster: `/media/posters/${id}.jpg`, ratio, dur,
 });
 
-export const images: Project[] = [
+import extraImages from "../extra-images.json";
+import extraVideos from "../extra-videos.json";
+type Extra = { id: string; title: string; type: string; category: string; ratio: string; dur?: number };
+const fromExtra = (e: Extra): Project => e.type === "video"
+  ? { id: e.id, title: e.title, category: e.category as Category, blurb: "Wedding invitation / save-the-date film.", type: "video", src: `/media/v/${e.id}.mp4`, poster: `/media/posters/${e.id}.jpg`, ratio: e.ratio as Project["ratio"], dur: e.dur }
+  : { id: e.id, title: e.title, category: e.category as Category, blurb: e.category === "Wedding" ? "Wedding creative." : "Social media creative.", type: "image", src: `/media/web/${e.id}.webp`, ratio: e.ratio as Project["ratio"] };
+const extraImgProjects = (extraImages as Extra[]).map(fromExtra);
+const extraVidProjects = (extraVideos as Extra[]).map(fromExtra);
+
+const baseImages: Project[] = [
   img("17-meet-our-digital-experts-post", "Meet Our Digital Experts", "Team-introduction social post."),
   img("2-rapture-digital-presence-post-v2", "Rapture Digital Presence", "Brand presence post for Rapture."),
   img("2-safety-post", "Safety Post", "Awareness creative for social feeds."),
@@ -76,6 +85,9 @@ export const images: Project[] = [
   img("7700-employees-file1-v1", "7700 Employees", "Milestone announcement creative."),
   img("16328964-minimal-inspiration-1-4-11111111", "Minimal Inspiration", "Minimal layout exploration."),
 ];
+
+export const images: Project[] = [...baseImages, ...extraImgProjects.filter((p) => p.category === "Social Design")];
+const weddingStills = extraImgProjects.filter((p) => p.category === "Wedding");
 
 export const videos: Project[] = [
   vid("videos", "forbes-marshall-shinkawa-40-years-rndr-1", "Forbes Marshall Shinkawa 40 years rndr 1.mp4", "Forbes Marshall x Shinkawa — 40 Years", "Films", "Anniversary film.", "landscape", 119),
@@ -99,8 +111,9 @@ export const videos: Project[] = [
   vid("cgi", "bird-cgi-3", "Bird CGI 3.mp4", "Bird — CGI", "CGI", "CGI animation.", "portrait", 5),
 ];
 
-export const projects: Project[] = [...videos, ...images];
-export const categories: ("All" | Category)[] = ["All", "Films", "Reels", "CGI", "Social Design"];
+export const projects: Project[] = [...videos, ...extraVidProjects, ...weddingStills, ...images];
+export const categories: ("All" | Category)[] = ["All", "Films", "Reels", "CGI", "Wedding", "Social Design"];
 // Showreel: the long-form cinematic pieces
 export const reelFeatured = videos.filter((v) => v.category === "Films");
+
 
