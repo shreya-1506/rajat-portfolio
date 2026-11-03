@@ -1,0 +1,14 @@
+node_modules/
+.next/
+npm-cache/
+out/
+.env*
+*.log
+.DS_Store
+# Original full-size media (kept locally, not in git)
+public/media/images/
+public/media/videos/
+public/media/cgi/
+video-meta.json
+.netlify/
+tsconfig.tsbuildinfo
