@@ -1,5 +1,5 @@
 ﻿@tailwind base; @tailwind components; @tailwind utilities;
-:root { --acid:#d4ff3a; }
+:root { --acid:#d4ff3a; --font-display:"Bricolage Grotesque Variable","Bricolage Grotesque",system-ui,sans-serif; --font-serif:"Instrument Serif",Georgia,serif; --font-mono:"JetBrains Mono",ui-monospace,monospace; }
 html { background:#0a0a0a; }
 html.lenis, html.lenis body { height:auto; }
 .lenis.lenis-smooth { scroll-behavior:auto !important; }
@@ -18,3 +18,4 @@ body { background:#0a0a0a; color:#f1ede4; font-family:var(--font-display),sans-s
 @media (hover:none), (pointer:coarse) { .cursor-dot { display:none !important; } }
 @media (prefers-reduced-motion: reduce) { .marquee, .grain::after { animation:none; } }
 a:focus-visible, button:focus-visible { outline:2px solid var(--acid); outline-offset:3px; }
+
